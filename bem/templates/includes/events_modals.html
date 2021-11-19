@@ -1,0 +1,94 @@
+<style>
+  .modal-content {
+    color: #444;
+  }
+
+  .modal-header {
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+  }
+</style>
+
+<!-- More Info -->
+<div
+  class="modal fade"
+  id="Modal-MoreInfo-{{ event.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">
+          <!-- -->
+          {{ event.location }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">{{ event.description }}</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Register Confirm -->
+<div
+  class="modal fade"
+  id="Modal-RegisterConfirm-{{ event.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">
+          <!-- -->
+          Location: {{ event.location }} &nbsp; Fee: &#8377; {{event.fee}}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"></div>
+      <form method="POST">
+        {{ register_event_form.hidden_tag() }}
+
+        <h4 class="text-center">Are you sure you want to register?</h4>
+        <br />
+        <h6 class="text-center">
+          By clicking register, your team will be registered for the event.
+        </h6>
+        <br />
+        <input
+          id="registered_event"
+          name="registered_event"
+          type="hidden"
+          value="{{event.id}}"
+        />
+        {{ register_event_form.submit(class = "btn btn-success btn-block")}}
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

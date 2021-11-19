@@ -1,0 +1,15 @@
+body {
+  background-color: rgb(252, 252, 252);
+  color: rgb(83, 82, 82);
+}
+
+thead {
+  background-image: linear-gradient(to top left, #39b385, #9be15d);
+  /* linear-gradient(to top left, #39b385, #9be15d); */
+}
+/* 
+.card {
+  background-image: linear-gradient(to top left, #232f34, #232f34);
+} */
+
+/* #26495f, #42708d */

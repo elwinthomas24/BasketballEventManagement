@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% block links %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/eventStyle.css') }}"
+/>{% endblock %}{% block title %} Events {% endblock %} {% block content %}
+<div class="row" style="margin-top: 3rem; margin-left: 2rem">
+  <div class="col-8">
+    <h2>Upcoming Events</h2>
+    <table
+      class="table table-hover table-light"
+      style="margin-top: 3rem"
+      id="event_table"
+    >
+      <thead class="theader">
+        <tr>
+          <th>ID</th>
+          <th>Location</th>
+          <th>Fee</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody style="color: #444">
+        {% for event in events %} {% include 'includes/events_modals.html' %}
+        <tr>
+          <td>{{ event.id }}</td>
+          <td>{{ event.location }}</td>
+          <td>{{ event.fee }} &#8377;</td>
+          <td>
+            <button
+              class="btn btn-outline btn-info"
+              data-toggle="modal"
+              data-target="#Modal-MoreInfo-{{event.id}}"
+            >
+              More Info
+            </button>
+            <button
+              class="btn btn-outline btn-success"
+              data-toggle="modal"
+              data-target="#Modal-RegisterConfirm-{{event.id}}"
+            >
+              Register
+            </button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-4">
+    <h2>Registered Events</h2>
+    <div class="row">
+      {% for registered_event in user_r_events %} {% include
+      'includes/registered_events_modals.html' %}
+      <div>
+        <div
+          style="color: white; margin-bottom: 5px"
+          class="card text-center bg-dark"
+        >
+          <div class="card-body">
+            <h5 class="card-title">{{ registered_event.location }}</h5>
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              style="margin-bottom: 5px"
+              data-toggle="modal"
+              data-target="#Modal-CancelConfirm-{{ registered_event.id }}"
+            >
+              Cancel Registration
+            </button>
+            <p class="card-text">
+              <strong> {{registered_event.description}} </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

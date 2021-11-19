@@ -1,0 +1,64 @@
+<!-- <style>
+  .modal-content {
+    color: #444;
+  }
+  /* .modal-title {
+    color: white;
+  } */
+
+  /* .modal-header {
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+  } */
+</style> -->
+
+<div
+  class="modal fade"
+  id="Modal-CancelConfirm-{{ registered_event.id }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">
+          <!-- -->
+          Location: {{ registered_event.location }}
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body"></div>
+      <form method="POST">
+        {{ cancel_register_form.hidden_tag() }}
+
+        <h4 class="text-center">
+          Are you sure you want to cancel your registration?
+        </h4>
+        <br />
+        <h6 class="text-center">
+          By clicking cancel, your team will be removed from the event.
+        </h6>
+        <br />
+        <input
+          id="cancelled_event"
+          name="cancelled_event"
+          type="hidden"
+          value="{{registered_event.id}}"
+        />
+        {{ cancel_register_form.submit(class = "btn btn-danger btn-block")}}
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
